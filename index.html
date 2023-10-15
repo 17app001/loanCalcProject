@@ -31,12 +31,34 @@
         <br>
         <input type="button" value="計算" onclick="roanCalc()">
     </form>
+    <ul id="result">
+
+
+    </ul>
+    <table id="resultTable" border="1">
+        <thead>
+            <tr>
+                <th>期別</th>
+                <th>本金</th>
+                <th>利息</th>
+                <th>本利和</th>
+                <th>餘額</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+
 
     <script>
         const loanAmountEl = document.querySelector("#loanAmount");
         const interestRateEl = document.querySelector("#interestRate");
         const loanYearEl = document.querySelector("#loanYear");
         const principalPaymentEl = document.querySelector("#principalPayment");
+        const resultEl = document.querySelector("#result");
+        const tableTbodyEl = document.querySelector("#resultTable tbody");
 
         function roanCalc() {
             //取得貸款金額/利率/年期
@@ -45,30 +67,63 @@
             let loanYear = loanYearEl.value;
             //本金攤還方式
             let principalPayment = principalPaymentEl.checked;
-            console.log(loanAmount, interestRate, loanYear, principalPayment);
+            //console.log(loanAmount, interestRate, loanYear, principalPayment);
 
-            let amout = loanAmount;
+            let amount = loanAmount;
             let months = loanYear * 12;
             let monthRate = interestRate / 100 / 12;
             //固定還款金額
-            let monthPay = parseInt(amout / months);
+            let monthPay = parseInt(amount / months);
+            let resultPayment = [];
 
-            console.log(amout, months, monthRate, monthPay);
+            //console.log(amount, months, monthRate, monthPay);
+
             //跑動期數
             for (let i = 0; i < months; i++) {
                 //計算每個月利息
-                let interest = Math.round(amout * monthRate);
+                let interest = Math.round(amount * monthRate);
                 //減少餘額
-                amout -= monthPay
-                //最後一期
+                amount -= monthPay;
+                //最後一期              
                 if (i == months - 1) {
-                    console.log(`期別:${i + 1} 本金:${monthPay + amout} 利息:${interest} 本利和:${monthPay + interest + amout} 餘額:0`)
+                    resultPayment.push([i + 1, monthPay + amount, interest, monthPay + interest + amount, 0]);
                 }
                 else {
-                    console.log(`期別:${i + 1} 本金:${monthPay} 利息:${interest} 本利和:${monthPay + interest} 餘額:${amout}`);
+                    resultPayment.push([i + 1, monthPay, interest, monthPay + interest, amount]);
                 }
             }
+
+            drawTable(resultPayment);
+            //drawList(resultPayment);
         }
+
+        //繪製列表
+        function drawList(resultPayment) {
+            let liText = "";
+            // tr
+            for (let i = 0; i < resultPayment.length; i++) {
+                liText += `<li>期別:${resultPayment[i][0]}本金:${resultPayment[i][1]}
+                     利息:${resultPayment[i][2]} 本利和:${resultPayment[i][3]} 餘額:${resultPayment[i][4]}</li>`;
+            }
+            resultEl.innerHTML = liText;
+        }
+
+        //繪製表格
+        function drawTable(resultPayment) {
+            let tableHtml = "";
+            // tr
+            for (let i = 0; i < resultPayment.length; i++) {
+                tableHtml += "<tr>";
+                for (let j = 0; j < resultPayment[i].length; j++) {
+                    // td
+                    tableHtml += `<td>${resultPayment[i][j]}</td>`;
+                }
+                tableHtml += "</tr>";
+            }
+
+            tableTbodyEl.innerHTML = tableHtml;
+        }
+
     </script>
 </body>
 
