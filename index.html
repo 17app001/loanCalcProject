@@ -31,12 +31,18 @@
         <br>
         <input type="button" value="計算" onclick="roanCalc()">
     </form>
+    <ul id="result">
+
+
+    </ul>
+
 
     <script>
         const loanAmountEl = document.querySelector("#loanAmount");
         const interestRateEl = document.querySelector("#interestRate");
         const loanYearEl = document.querySelector("#loanYear");
         const principalPaymentEl = document.querySelector("#principalPayment");
+        const resultEl = document.querySelector("#result");
 
         function roanCalc() {
             //取得貸款金額/利率/年期
@@ -54,6 +60,7 @@
             let monthPay = parseInt(amout / months);
 
             console.log(amout, months, monthRate, monthPay);
+            let liText = "";
             //跑動期數
             for (let i = 0; i < months; i++) {
                 //計算每個月利息
@@ -61,13 +68,19 @@
                 //減少餘額
                 amout -= monthPay
                 //最後一期
+                let text = "";
                 if (i == months - 1) {
-                    console.log(`期別:${i + 1} 本金:${monthPay + amout} 利息:${interest} 本利和:${monthPay + interest + amout} 餘額:0`)
+                    text = `期別:${i + 1} 本金:${monthPay + amout} 利息:${interest} 本利和:${monthPay + interest + amout} 餘額:0`
                 }
                 else {
-                    console.log(`期別:${i + 1} 本金:${monthPay} 利息:${interest} 本利和:${monthPay + interest} 餘額:${amout}`);
+                    text = `期別:${i + 1} 本金:${monthPay} 利息:${interest} 本利和:${monthPay + interest} 餘額:${amout}`;
                 }
+
+                liText += `<li>${text}</li>`;
+                console.log(text)
             }
+
+            resultEl.innerHTML = liText;
         }
     </script>
 </body>
