@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>貸款利息計算器 v1.0</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>貸款利息計算器</h1>
     <form>
         <label for="">計算方式:</label>
+        <br>
         <input type="radio" id="principalPayment" name="repayment" checked>本金攤還
         <input type="radio" id="interestPayment" name="repayment">本息攤還
         <br>
@@ -18,7 +20,7 @@
         <input type="number" id="loanAmount" placeholder="請輸入金額" value="10">&nbsp;萬
         <br>
         <label for="interestRate">貸款利率:</label>
-        <input type="number" id="interestRate" step="0.1" value="3.5">&nbsp;%
+        <input type="number" id="interestRate" step="0.1" value="3.5">&nbsp;％
         <br>
         <label for="loanYear">貸款年數:</label>
         <select name="loanYear" id="loanYear">

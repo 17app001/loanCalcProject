@@ -1,0 +1,96 @@
+body {
+    text-align: center;
+    background-color: antiquewhite;
+    font-family: '標楷體', Courier, monospace;
+    font-size: 20px;
+}
+
+form {
+    width: 30%;
+    margin: 12px auto;
+    background-color: aquamarine;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+input {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+input[type="button"] {
+    margin-top: 24px;
+    width: 100px;
+    background-color: rgb(67, 67, 218);
+    color: white;
+    font-family: '標楷體', Courier, monospace;
+
+}
+
+#result {
+    display: block;
+    background-color: tomato;
+    padding: 6px 0px;
+    color: white;
+    margin: 12px;
+}
+
+#resultTable {
+    width: 70%;
+    margin: 2px auto;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+th {
+    background-color: chartreuse;
+}
+
+td:first-child {
+    background-color: chartreuse;
+}
+
+td:nth-child(3) {
+    background-color: tomato;
+    color: white
+}
+
+/* 小於1024pixel */
+@media (max-width:1024px) {
+    form {
+        width: 50%;
+    }
+
+    #resultTable {
+        width: 100%;
+    }
+}
+
+
+/* 小於768pixel */
+@media (max-width:768px) {
+    body {
+        font-size: 16px;
+    }
+
+    select {
+        margin-top: 12px;
+    }
+
+    input[type="number"] {
+        width: 80px;
+    }
+
+    input[type="radio"] {
+        font-size: 12px;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    #resultTable {
+        width: 90%;
+    }
+}
