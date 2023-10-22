@@ -5,53 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貸款利息計算器 v1.0</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        input {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>貸款利息計算器</h1>
-    <form>
-        <label for="">計算方式:</label>
-        <br>
-        <input type="radio" id="principalPayment" name="repayment" checked>本金攤還
-        <input type="radio" id="interestPayment" name="repayment">本息攤還
-        <br>
-        <label for="loanAmount">貸款金額:</label>
-        <input type="number" id="loanAmount" placeholder="請輸入金額" value="10">&nbsp;萬
-        <br>
-        <label for="interestRate">貸款利率:</label>
-        <input type="number" id="interestRate" step="0.1" value="3.5">&nbsp;％
-        <br>
-        <label for="loanYear">貸款年數:</label>
-        <select name="loanYear" id="loanYear">
-            <option value="3">3</option>
-            <option value="5">5</option>
-            <option value="7" selected>7</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-        &nbsp;年
-        <br>
-        <input type="button" value="計算" onclick="roanCalc()">
-    </form>
-    <div id="result">
+    <section class="hero is-info is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title is-size-1">
+                    貸款利息計算器
+                </p>
+                <div class="columns is-centered">
+                    <div class="column is-6">
+                        <form class="box has-background-warning">
+                            <div class="field box has-background-link has-text-white">
+                                <label class="label is-size-4 has-text-white">計算方式</label>
+                                <div class="control">
+                                    <input type="radio" id="principalPayment" name="repayment" checked>本金攤還
+                                    <input type="radio" id="interestPayment" name="repayment">本息攤還
+                                </div>
+                            </div>
+                            <div class="field m-3">
+                                <label class="label is-size-5 has-text-danger" for="loanAmount">貸款金額(萬)</label>
+                                <input class="input" type="number" id="loanAmount" placeholder="請輸入金額" value="10">
+                            </div>
+                            <div class="field m-3">
+                                <label class="label" for="interestRate">貸款利率(％)</label>
+                                <input class="input" type="number" id="interestRate" step="0.1" value="3.5">
+                            </div>
+                            <div class="field m-3">
+                                <label class="label" for="loanYear">貸款年數:</label>
+                                <select class="select is-fullwidth has-text-centered is-size-6" name="loanYear"
+                                    id="loanYear">
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="7" selected>7</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                            <input class="button has-background-danger has-text-white" type="button" value="計算"
+                                onclick="roanCalc()">
+                            <input class="button has-background-primary has-text-white" type="reset" value="重置">
+                        </form>
+                    </div>
+                </div>
+                <div id="result" class="box is-size-5 has-background-danger-light has-text-dark">
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-10">
+                        <table id="resultTable" class="table is-fullwidth is-bordered is-striped is-hoverable" hidden>
+                            <thead>
+                                <tr class="has-background-link">
+                                    <th class="has-text-centered has-text-white">期別</th>
+                                    <th class="has-text-centered has-text-white">本金</th>
+                                    <th class="has-text-centered has-text-white">利息</th>
+                                    <th class="has-text-centered has-text-white">本利和</th>
+                                    <th class="has-text-centered has-text-white">餘額</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
 
-    </div>
-    <table id="resultTable" border="1" hidden>
-        <thead>
-            <tr>
-                <th>期別</th>
-                <th>本金</th>
-                <th>利息</th>
-                <th>本利和</th>
-                <th>餘額</th>
-            </tr>
-        </thead>
-        <tbody>
+                        </table>
+                    </div>
+                </div>
 
-        </tbody>
+                <a href="" class="button has-background-primary">TOP</a>
+            </div>
+        </div>
+    </section>
 
-    </table>
+
+
+
 
 
     <script>
